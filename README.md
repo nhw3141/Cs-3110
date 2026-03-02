@@ -1,1 +1,14 @@
 # Cs-3110
+Reflection and Summary of Learning
+In this assignment I designed NFAs in JFLAP for Problems 8, 9, 11, 12, and 14. These problems involved prefix constraints, suffix constraints, substring detection, positional conditions, counting exact occurrences, and parity. Through constructing, testing, and debugging these automata, I gained a stronger understanding of nondeterminism and state-set evolution.
+Problems That Gave Me the Most Trouble
+Problem 8 (starts with 01 and ends with 10) was the most conceptually difficult. I initially attempted to check the prefix and suffix using separate branches from the start state. This design was logically flawed because both conditions must hold along the same computation path. Valid strings such as 0110 were rejected, which revealed that I had not properly enforced the requirement that 10 must occur at the end of the input.
+Problem 11 (second-to-last bit is 1) was challenging in implementation. Although I understood the idea of nondeterministically “guessing” the second-to-last position, I did not correctly implement branching in JFLAP. I failed to include both transitions on input 1 from the start state, so the machine could not maintain multiple active states. As a result, simple valid strings like 10 were rejected.
+Problems 12 (exactly three 1’s) and 14 (even length) were more straightforward, but they reinforced the importance of precise transition coverage and ensuring that accepting states do not allow unintended additional input.
+Problem 9 (contains substring 10) helped me better understand overlapping patterns and how NFAs track multiple possible computations simultaneously.
+Use of AI and Classmate Discussion
+When I encountered structural mistakes in Problems 8 and 11, I asked questions to AI and discussed ideas with classmates. I used these discussions to understand where my logical reasoning was incorrect, especially regarding nondeterminism and suffix enforcement. However, I rebuilt and corrected the automata myself after identifying the conceptual issue. The debugging process still required me to trace active state sets and verify correctness independently in JFLAP.
+Gold-St-Ring Moments
+Problem 11 produced the clearest gold-st-ring with the string 10. I expected acceptance, but the machine rejected it. Using Step with Closure, I observed that the active state set never included the accepting branch because I had not implemented nondeterministic transitions correctly.
+Problem 8 also produced a gold-st-ring with the string 0110. Although it satisfies both the prefix and suffix conditions, my machine rejected it due to incorrect structural design. This revealed that I had treated the two constraints independently instead of integrating them in a single coherent automaton.
+In both cases, I did not fully account for all possible next states in the subset of active states. I sometimes reasoned deterministically instead of embracing the nondeterministic model.
